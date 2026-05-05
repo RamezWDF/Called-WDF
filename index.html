@@ -82,10 +82,999 @@ html, body {
   color: var(--text);
   letter-spacing: -0.3px;
 }
-</page>
+.app-date {
+  font-size: 12px;
+  color: var(--text2);
+  font-weight: 300;
+}
+.pillars {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+.pillar-tag {
+  font-size: 10px;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: 20px;
+  letter-spacing: 0.03em;
+}
+.pt-d { background: var(--navy-soft); color: #6B9EFF; }
+.pt-f { background: var(--green-soft); color: #6BD9A0; }
+.pt-w { background: var(--gold-soft); color: #F0C070; }
+
+/* TAB BAR */
+.tab-bar {
+  display: flex;
+  background: var(--bg);
+  border-top: .5px solid var(--border);
+  padding-bottom: var(--safe-bottom);
+  flex-shrink: 0;
+  order: 99;
+}
+.tab-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 4px;
+  cursor: pointer;
+  gap: 3px;
+  transition: opacity .15s;
+}
+.tab-item:active { opacity: .6; }
+.tab-icon { font-size: 20px; line-height: 1; }
+.tab-label { font-size: 10px; color: var(--text3); font-weight: 500; transition: color .15s; }
+.tab-item.active .tab-label { color: var(--navy); }
+.tab-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--navy); opacity: 0; transition: opacity .15s; }
+.tab-item.active .tab-dot { opacity: 1; }
+
+/* CONTENT AREA */
+.content {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+.page { display: none; padding: 16px 16px 24px; }
+.page.active { display: block; }
+
+/* SECTION LABEL */
+.sec {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  margin: 20px 0 8px;
+}
+.sec:first-child { margin-top: 4px; }
+
+/* CARD */
+.card {
+  background: var(--bg2);
+  border: .5px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+/* BLOCK HEADER */
+.block-hdr {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 4px;
+  margin: 18px 0 6px;
+}
+.block-hdr:first-child { margin-top: 4px; }
+.bdot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.bdot-m { background: var(--navy); }
+.bdot-f { background: var(--crimson); }
+.bdot-e { background: var(--gold); }
+.block-hdr span {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--text2);
+}
+
+/* HABIT ROW */
+.hrow {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: .5px solid var(--border);
+  gap: 12px;
+  transition: background .15s;
+}
+.hrow:last-child { border-bottom: none; }
+.hrow:active { background: var(--bg3); }
+.hinfo { flex: 1; min-width: 0; }
+.hname { font-size: 15px; font-weight: 500; color: var(--text); }
+.hsub { font-size: 11px; color: var(--text2); margin-top: 2px; line-height: 1.4; font-weight: 300; }
+
+/* TOGGLE */
+.tog {
+  width: 52px;
+  height: 30px;
+  border-radius: 15px;
+  border: 1.5px solid var(--border);
+  background: var(--bg3);
+  cursor: pointer;
+  position: relative;
+  transition: background .25s, border-color .25s;
+  flex-shrink: 0;
+}
+.tog::after {
+  content: '';
+  position: absolute;
+  top: 3px; left: 3px;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--text3);
+  transition: transform .25s, background .25s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+.tog.on { border-color: transparent; }
+.tog.on::after { transform: translateX(22px); background: #fff; }
+.tog-m.on { background: var(--navy); }
+.tog-f.on { background: var(--crimson); }
+.tog-e.on { background: var(--gold); }
+
+/* SESSION CHIPS */
+.ses-row {
+  padding: 14px 16px;
+  border-bottom: .5px solid var(--border);
+}
+.ses-row:last-child { border-bottom: none; }
+.ses-label { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+.ses-sub { font-size: 11px; color: var(--text2); margin-bottom: 10px; font-weight: 300; }
+.chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.chip {
+  padding: 7px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 400;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text2);
+  transition: all .15s;
+  user-select: none;
+}
+.chip:active { transform: scale(0.96); }
+.chip.gym-on   { background: var(--green-soft); border-color: var(--green); color: var(--green); font-weight: 500; }
+.chip.tennis-on{ background: var(--navy-soft); border-color: var(--navy); color: #6B9EFF; font-weight: 500; }
+.chip.career-on{ background: var(--teal-soft); border-color: var(--teal); color: var(--teal); font-weight: 500; }
+.chip.book-on  { background: var(--gold-soft); border-color: var(--gold); color: var(--gold); font-weight: 500; }
+.chip.bible-on { background: var(--crimson-soft); border-color: var(--crimson); color: #FF8080; font-weight: 500; }
+
+/* SCORE BARS */
+.scores {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.srow { display: flex; align-items: center; gap: 10px; }
+.slbl { font-size: 12px; color: var(--text2); width: 72px; flex-shrink: 0; font-weight: 400; }
+.strk { flex: 1; height: 5px; background: var(--bg3); border-radius: 3px; overflow: hidden; }
+.sfill { height: 100%; border-radius: 3px; transition: width .5s cubic-bezier(.4,0,.2,1); }
+.sf-m { background: var(--navy); }
+.sf-f { background: var(--crimson); }
+.sf-e { background: var(--gold); }
+.spct { font-size: 12px; color: var(--text2); width: 28px; text-align: right; flex-shrink: 0; }
+
+/* DAY MESSAGE */
+.day-msg {
+  margin: 10px 16px 16px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  line-height: 1.6;
+  background: var(--bg3);
+  color: var(--text2);
+  border-left: 3px solid var(--border);
+  font-family: 'Crimson Pro', serif;
+  font-size: 15px;
+}
+.day-msg.great { border-left-color: var(--green); color: var(--text); }
+.day-msg.warn  { border-left-color: var(--crimson); }
+
+/* CALENDAR */
+.month-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding: 0 2px;
+}
+.month-title {
+  font-family: 'Crimson Pro', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+}
+.mnav {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--bg2);
+  border: .5px solid var(--border);
+  color: var(--text2);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s;
+}
+.mnav:active { background: var(--bg3); }
+.cal-hdr { display: grid; grid-template-columns: repeat(7,1fr); gap: 2px; margin-bottom: 4px; }
+.cal-dn { font-size: 10px; color: var(--text3); text-align: center; padding: 3px 0; font-weight: 600; }
+.cal-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 3px; }
+.cal-cell {
+  border-radius: 8px;
+  border: .5px solid var(--border);
+  cursor: pointer;
+  background: var(--bg2);
+  padding: 4px 2px;
+  min-height: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  transition: background .15s;
+}
+.cal-cell:active { background: var(--bg3); }
+.cal-cell.empty { background: transparent; border-color: transparent; cursor: default; }
+.cal-cell.future { opacity: .25; pointer-events: none; }
+.cal-cell.today { border-color: var(--navy); border-width: 1.5px; }
+.dnum { font-size: 11px; font-weight: 600; color: var(--text2); }
+.cal-cell.today .dnum { color: #6B9EFF; }
+.dpips { display: flex; gap: 2px; flex-wrap: wrap; justify-content: center; max-width: 32px; }
+.pip { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+
+/* LEGEND */
+.legend { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.leg { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text2); }
+.lpip { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+/* STATS GRID */
+.sgrid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 12px; }
+.smet {
+  background: var(--bg2);
+  border: .5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 8px;
+  text-align: center;
+}
+.smet-val { font-size: 24px; font-weight: 600; color: var(--text); font-family: 'Crimson Pro', serif; }
+.smet-lbl { font-size: 10px; color: var(--text2); margin-top: 2px; font-weight: 400; }
+
+/* SESSION BREAKDOWN */
+.ses-bd { display: flex; flex-wrap: wrap; gap: 7px; }
+.ses-pill {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--bg2);
+  border: .5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 7px 12px;
+  font-size: 13px;
+  color: var(--text);
+}
+.ses-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+/* MONTHLY ROWS */
+.mrow {
+  display: flex; align-items: center; gap: 10px;
+  padding: 13px 16px;
+  border-bottom: .5px solid var(--border);
+}
+.mrow:last-child { border-bottom: none; }
+.mlbl { flex: 1; font-size: 14px; font-weight: 500; color: var(--text); }
+.msub { font-size: 11px; color: var(--text2); margin-top: 2px; font-weight: 300; }
+.ni {
+  width: 56px; font-size: 14px; text-align: center;
+  padding: 6px; border-radius: var(--radius-sm);
+  border: .5px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+}
+.mtotal { font-size: 12px; color: var(--text2); min-width: 28px; text-align: right; }
+.bwrap { width: 52px; height: 4px; background: var(--bg3); border-radius: 2px; overflow: hidden; }
+.bfill { height: 100%; border-radius: 2px; transition: width .3s; }
+
+/* UGANDA */
+.callout {
+  background: var(--bg2);
+  border: .5px solid var(--border);
+  border-left: 3px solid var(--crimson);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.6;
+}
+.callout strong { color: var(--text); }
+.ci { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; border-bottom: .5px solid var(--border); }
+.ci:last-child { border-bottom: none; }
+.ci input[type=checkbox] { margin-top: 2px; width: 20px; height: 20px; flex-shrink: 0; cursor: pointer; accent-color: var(--navy); }
+.ci-lbl { font-size: 14px; font-weight: 500; color: var(--text); line-height: 1.4; cursor: pointer; }
+.ci-sub { font-size: 11px; color: var(--text2); margin-top: 3px; font-weight: 300; }
+.ci.done .ci-lbl { text-decoration: line-through; color: var(--text3); }
+
+/* REPORT */
+.tarea {
+  width: 100%; min-height: 90px;
+  font-size: 14px; font-family: 'DM Sans', sans-serif;
+  color: var(--text);
+  background: var(--bg2);
+  border: .5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  resize: vertical; line-height: 1.6;
+  margin-bottom: 10px;
+}
+.tarea::placeholder { color: var(--text3); }
+.send-btn {
+  width: 100%; padding: 15px;
+  font-size: 15px; font-weight: 600;
+  cursor: pointer;
+  border-radius: var(--radius);
+  background: var(--navy);
+  color: #fff;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.02em;
+  transition: opacity .15s;
+  margin-top: 4px;
+}
+.send-btn:active { opacity: .8; }
+
+/* MODAL — slides up */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.6);
+  align-items: flex-end; justify-content: center;
+  z-index: 999;
+  backdrop-filter: blur(4px);
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: var(--bg2);
+  border-radius: 20px 20px 0 0;
+  border: .5px solid var(--border);
+  padding: 20px 16px;
+  width: 100%;
+  max-width: 480px;
+  max-height: 88vh;
+  overflow-y: auto;
+  padding-bottom: calc(20px + var(--safe-bottom));
+}
+.modal-handle {
+  width: 36px; height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  margin: 0 auto 16px;
+}
+.modal-title {
+  font-family: 'Crimson Pro', serif;
+  font-size: 20px; font-weight: 600;
+  color: var(--text); margin-bottom: 14px;
+}
+.mcheck {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 0; border-bottom: .5px solid var(--border);
+}
+.mcheck span { font-size: 14px; color: var(--text); font-weight: 400; }
+.mcheck input { width: 20px; height: 20px; cursor: pointer; accent-color: var(--navy); }
+.mses-lbl {
+  margin-top: 14px; margin-bottom: 8px;
+  font-size: 11px; font-weight: 600;
+  color: var(--text3); text-transform: uppercase; letter-spacing: .08em;
+}
+.mchips { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 16px; }
+.mchip {
+  padding: 7px 14px; border-radius: 20px;
+  font-size: 13px; cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text2);
+  transition: all .15s;
+}
+.mchip:active { transform: scale(0.96); }
+.mchip.on { font-weight: 600; }
+.mbtns { display: flex; gap: 8px; }
+.mbtns button {
+  flex: 1; padding: 13px; font-size: 14px;
+  cursor: pointer; border-radius: var(--radius-sm);
+  font-family: 'DM Sans', sans-serif; font-weight: 600;
+  transition: opacity .15s;
+}
+.mbtns button:first-child { background: var(--navy); color: #fff; border: none; }
+.mbtns button:last-child { background: var(--bg3); color: var(--text2); border: .5px solid var(--border); }
+.mbtns button:active { opacity: .7; }
+
+/* INSTALL BANNER */
+.install-banner {
+  display: none;
+  margin-bottom: 12px;
+  background: var(--navy-soft);
+  border: .5px solid rgba(45,91,227,0.3);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-size: 13px;
+  color: #6B9EFF;
+  line-height: 1.5;
+  cursor: pointer;
+}
+.install-banner strong { color: #fff; }
 </style>
 </head>
 <body>
-<div class="app"><div class="status-bar"></div></div>
+
+<div class="app">
+  <div class="status-bar"></div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <div class="app-name">Called</div>
+      <div class="app-date" id="hdr-date"></div>
+    </div>
+    <div class="pillars">
+      <span class="pillar-tag pt-d">Discipleship</span>
+      <span class="pillar-tag pt-f">Finance</span>
+      <span class="pillar-tag pt-w">Worship</span>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- TODAY PAGE -->
+    <div class="page active" id="page-today">
+      <div class="install-banner" id="install-banner" onclick="installApp()">
+        <strong>Add to Home Screen</strong> — tap here to install Called as an app on your phone.
+      </div>
+
+      <div class="block-hdr"><div class="bdot bdot-m"></div><span>Morning block</span></div>
+      <div class="card">
+        <div class="hrow">
+          <div class="hinfo">
+            <div class="hname">Phone-free wake up</div>
+            <div class="hsub">Accountability reply only — no scrolling</div>
+          </div>
+          <div class="tog tog-m" id="tog-phoneam" onclick="tog('phoneam')"></div>
+        </div>
+        <div class="hrow">
+          <div class="hinfo">
+            <div class="hname">Quiet Time done</div>
+            <div class="hsub">30 min Bible + prayer at 7:30am</div>
+          </div>
+          <div class="tog tog-m" id="tog-qt" onclick="tog('qt')"></div>
+        </div>
+        <div class="ses-row">
+          <div class="ses-label">Morning session</div>
+          <div class="ses-sub">What did you do today?</div>
+          <div class="chips">
+            <div class="chip" id="chip-gym"    onclick="pickSes('gym')">🏋️ Gym</div>
+            <div class="chip" id="chip-tennis" onclick="pickSes('tennis')">🎾 Tennis</div>
+            <div class="chip" id="chip-career" onclick="pickSes('career')">📊 Career</div>
+            <div class="chip" id="chip-book"   onclick="pickSes('book')">📖 Book</div>
+            <div class="chip" id="chip-bible"  onclick="pickSes('bible')">✝️ Bible</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-hdr"><div class="bdot bdot-f"></div><span>Foundation</span></div>
+      <div class="card">
+        <div class="hrow">
+          <div class="hinfo">
+            <div class="hname">Clean day</div>
+            <div class="hsub">Defaults to yes — toggle off if you slipped</div>
+          </div>
+          <div class="tog tog-f on" id="tog-clean" onclick="tog('clean')"></div>
+        </div>
+      </div>
+
+      <div class="block-hdr"><div class="bdot bdot-e"></div><span>Evening block</span></div>
+      <div class="card">
+        <div class="hrow">
+          <div class="hinfo">
+            <div class="hname">Read before sleep</div>
+            <div class="hsub">10–20 pages — Emotionally Healthy Spirituality</div>
+          </div>
+          <div class="tog tog-e" id="tog-read" onclick="tog('read')"></div>
+        </div>
+        <div class="hrow">
+          <div class="hinfo">
+            <div class="hname">Phone-free before sleep</div>
+            <div class="hsub">Phone out of bedroom at 10pm</div>
+          </div>
+          <div class="tog tog-e" id="tog-phonepm" onclick="tog('phonepm')"></div>
+        </div>
+      </div>
+
+      <div class="card scores">
+        <div class="srow">
+          <div class="slbl">Morning</div>
+          <div class="strk"><div class="sfill sf-m" id="sf-m" style="width:0%"></div></div>
+          <div class="spct" id="sp-m">0%</div>
+        </div>
+        <div class="srow">
+          <div class="slbl">Foundation</div>
+          <div class="strk"><div class="sfill sf-f" id="sf-f" style="width:0%"></div></div>
+          <div class="spct" id="sp-f">✗</div>
+        </div>
+        <div class="srow">
+          <div class="slbl">Evening</div>
+          <div class="strk"><div class="sfill sf-e" id="sf-e" style="width:0%"></div></div>
+          <div class="spct" id="sp-e">0%</div>
+        </div>
+      </div>
+      <div class="day-msg" id="day-msg">Log your morning when you're done.</div>
+    </div>
+
+    <!-- CALENDAR PAGE -->
+    <div class="page" id="page-calendar">
+      <div class="month-nav">
+        <button class="mnav" onclick="changeMonth(-1)">‹</button>
+        <div class="month-title" id="month-title"></div>
+        <button class="mnav" onclick="changeMonth(1)">›</button>
+      </div>
+      <div class="legend">
+        <div class="leg"><div class="lpip" style="background:#2D5BE3"></div>QT</div>
+        <div class="leg"><div class="lpip" style="background:#3DAA6A"></div>Gym</div>
+        <div class="leg"><div class="lpip" style="background:#4A7FD4"></div>Tennis</div>
+        <div class="leg"><div class="lpip" style="background:#26A89A"></div>Career</div>
+        <div class="leg"><div class="lpip" style="background:#D4943A"></div>Book</div>
+        <div class="leg"><div class="lpip" style="background:#E53E3E"></div>Bible/Relapsed</div>
+      </div>
+      <div class="cal-hdr" id="cal-hdr"></div>
+      <div class="cal-grid" id="cal-grid"></div>
+      <div class="sec">This month</div>
+      <div class="sgrid">
+        <div class="smet"><div class="smet-val" id="cal-qt">0</div><div class="smet-lbl">QT days</div></div>
+        <div class="smet"><div class="smet-val" id="cal-clean">0</div><div class="smet-lbl">Clean days</div></div>
+        <div class="smet"><div class="smet-val" id="cal-full">0</div><div class="smet-lbl">Full days</div></div>
+      </div>
+      <div class="sec">Sessions this month</div>
+      <div class="ses-bd" id="ses-bd"></div>
+    </div>
+
+    <!-- MONTHLY PAGE -->
+    <div class="page" id="page-monthly">
+      <div class="sec">From calendar</div>
+      <div class="sgrid">
+        <div class="smet"><div class="smet-val" id="m-qt">—</div><div class="smet-lbl">QT days</div></div>
+        <div class="smet"><div class="smet-val" id="m-clean">—</div><div class="smet-lbl">Clean days</div></div>
+        <div class="smet"><div class="smet-val" id="m-full">—</div><div class="smet-lbl">Full days</div></div>
+      </div>
+      <div class="sec">Discipleship</div>
+      <div class="card">
+        <div class="mrow">
+          <div class="mlbl">Mentor session<div class="msub">Min 1/month</div></div>
+          <select class="ni" id="t-mentor" style="width:80px"><option value="no">✗ no</option><option value="yes">✓ yes</option></select>
+        </div>
+        <div class="mrow">
+          <div class="mlbl">Meraya calls<div class="msub">Weekly standing call</div></div>
+          <input type="number" class="ni" id="t-meraya" min="0" max="8" value="0">
+          <div class="mtotal">/4</div>
+        </div>
+        <div class="mrow">
+          <div class="mlbl">Verse on mirror<div class="msub">New one each week</div></div>
+          <select class="ni" id="t-verse" style="width:80px"><option value="no">✗ no</option><option value="yes">✓ yes</option></select>
+        </div>
+      </div>
+      <div class="sec">Finance</div>
+      <div class="card">
+        <div class="mrow">
+          <div class="mlbl">Career sessions<div class="msub">Target 12/month</div></div>
+          <input type="number" class="ni" id="t-pbi" min="0" max="20" value="0" oninput="bar('t-pbi','b-pbi',12)">
+          <div class="mtotal">/12</div>
+          <div class="bwrap"><div class="bfill" style="background:var(--teal)" id="b-pbi"></div></div>
+        </div>
+      </div>
+      <div class="sec">Worship</div>
+      <div class="card">
+        <div class="mrow">
+          <div class="mlbl">Vocals sessions<div class="msub">With Hany Fakhry</div></div>
+          <input type="number" class="ni" id="t-vocals" min="0" max="12" value="0">
+          <div class="mtotal">ses.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UGANDA PAGE -->
+    <div class="page" id="page-uganda">
+      <div class="callout">
+        <strong>Uganda: May 15–30.</strong> Being away from your routine is when the struggle hits hardest. Do these 5 things before you board.
+      </div>
+      <div class="card">
+        <div class="ci" id="ci1">
+          <input type="checkbox" id="c1" onchange="tci('ci1')">
+          <div><div class="ci-lbl" onclick="document.getElementById('c1').click()">Message your mentor TODAY for June session</div><div class="ci-sub">Not after Uganda. Today.</div></div>
+        </div>
+        <div class="ci" id="ci2">
+          <input type="checkbox" id="c2" onchange="tci('ci2')">
+          <div><div class="ci-lbl" onclick="document.getElementById('c2').click()">Download PL-300 study guide to phone</div><div class="ci-sub">Read it on the plane.</div></div>
+        </div>
+        <div class="ci" id="ci3">
+          <input type="checkbox" id="c3" onchange="tci('ci3')">
+          <div><div class="ci-lbl" onclick="document.getElementById('c3').click()">Upgrade morning check-in with friend</div><div class="ci-sub">"Are you clean?" + "Did you have QT?" — before 8am daily.</div></div>
+        </div>
+        <div class="ci" id="ci4">
+          <input type="checkbox" id="c4" onchange="tci('ci4')">
+          <div><div class="ci-lbl" onclick="document.getElementById('c4').click()">Agree how to check in from Uganda</div><div class="ci-sub">Different timezone, same commitment.</div></div>
+        </div>
+        <div class="ci" id="ci5">
+          <input type="checkbox" id="c5" onchange="tci('ci5')">
+          <div><div class="ci-lbl" onclick="document.getElementById('c5').click()">Move phone charger outside bedroom tonight</div><div class="ci-sub">Not when you return. Tonight.</div></div>
+        </div>
+      </div>
+      <div class="sec">While in Uganda</div>
+      <div class="card">
+        <div class="mrow"><div class="mlbl">Morning check-in continues<div class="msub">Uganda doesn't pause the foundation</div></div></div>
+        <div class="mrow"><div class="mlbl">QT continues — even 10 min counts<div class="msub">A broken schedule is not a zero</div></div></div>
+        <div class="mrow"><div class="mlbl">Let Uganda feed you<div class="msub">This is ministry — receive from it</div></div></div>
+      </div>
+    </div>
+
+    <!-- REPORT PAGE -->
+    <div class="page" id="page-report">
+      <div class="callout" style="border-left-color:var(--navy)">
+        End of month — fill this in honestly and send it. Claude responds with real coaching.
+      </div>
+      <div class="card">
+        <div class="mrow"><div class="mlbl">QT days</div><input type="number" class="ni" id="r-qt" min="0" max="31" placeholder="0"><div class="mtotal">/31</div></div>
+        <div class="mrow"><div class="mlbl">Clean days</div><input type="number" class="ni" id="r-clean" min="0" max="31" placeholder="0"><div class="mtotal">/31</div></div>
+        <div class="mrow"><div class="mlbl">Full habit days</div><input type="number" class="ni" id="r-full" min="0" max="31" placeholder="0"><div class="mtotal">/31</div></div>
+        <div class="mrow"><div class="mlbl">Career sessions</div><input type="number" class="ni" id="r-pbi" min="0" max="20" placeholder="0"><div class="mtotal">/12</div></div>
+        <div class="mrow"><div class="mlbl">Vocals sessions</div><input type="number" class="ni" id="r-vocals" min="0" max="12" placeholder="0"></div>
+        <div class="mrow"><div class="mlbl">Meraya calls</div><input type="number" class="ni" id="r-meraya" min="0" max="8" placeholder="0"><div class="mtotal">/4</div></div>
+        <div class="mrow"><div class="mlbl">Mentor session</div><select class="ni" id="r-mentor" style="width:80px"><option value="no">✗ no</option><option value="yes">✓ yes</option></select></div>
+      </div>
+      <div class="sec">One thing God showed me this month</div>
+      <textarea class="tarea" id="r-reflect" placeholder="Even one honest sentence is enough..."></textarea>
+      <div class="sec">Struggles to flag</div>
+      <textarea class="tarea" id="r-struggle" placeholder="Don't filter this. The struggle is part of the journey."></textarea>
+      <button class="send-btn" onclick="sendReport()">Send monthly report to Claude ↗</button>
+    </div>
+
+  </div><!-- end content -->
+
+  <!-- BOTTOM TAB BAR -->
+  <div class="tab-bar">
+    <div class="tab-item active" id="tab-today" onclick="showPage('today')">
+      <div class="tab-icon">☀️</div>
+      <div class="tab-label">Today</div>
+      <div class="tab-dot"></div>
+    </div>
+    <div class="tab-item" id="tab-calendar" onclick="showPage('calendar')">
+      <div class="tab-icon">📅</div>
+      <div class="tab-label">Calendar</div>
+      <div class="tab-dot"></div>
+    </div>
+    <div class="tab-item" id="tab-monthly" onclick="showPage('monthly')">
+      <div class="tab-icon">📊</div>
+      <div class="tab-label">Monthly</div>
+      <div class="tab-dot"></div>
+    </div>
+    <div class="tab-item" id="tab-uganda" onclick="showPage('uganda')">
+      <div class="tab-icon">✈️</div>
+      <div class="tab-label">Uganda</div>
+      <div class="tab-dot"></div>
+    </div>
+    <div class="tab-item" id="tab-report" onclick="showPage('report')">
+      <div class="tab-icon">📝</div>
+      <div class="tab-label">Report</div>
+      <div class="tab-dot"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="handleOverlay(event)">
+  <div class="modal-box">
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="modal-title"></div>
+    <div id="modal-checks"></div>
+    <div class="mses-lbl">Morning session</div>
+    <div class="mchips" id="modal-chips"></div>
+    <div class="mbtns">
+      <button onclick="saveModal()">Save</button>
+      <button onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── DATA ──
+var TODAY = new Date();
+var vY = TODAY.getFullYear(), vM = TODAY.getMonth();
+var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+var DAYS = ['S','M','T','W','T','F','S'];
+var SC = {gym:'#3DAA6A', tennis:'#4A7FD4', career:'#26A89A', book:'#D4943A', bible:'#E53E3E'};
+var SL = {gym:'🏋️ Gym', tennis:'🎾 Tennis', career:'📊 Career', book:'📖 Book', bible:'✝️ Bible'};
+var store = {}, calVis = false, modalDay = null;
+var deferredPrompt = null;
+
+// Load from localStorage
+try {
+  var saved = localStorage.getItem('called-store');
+  if (saved) store = JSON.parse(saved);
+  var savedCi = localStorage.getItem('called-ci');
+  if (savedCi) {
+    var ci = JSON.parse(savedCi);
+    ci.forEach(function(id) {
+      var el = document.getElementById(id);
+      var cb = el && el.querySelector('input');
+      if (cb) { cb.checked = true; el.classList.add('done'); }
+    });
+  }
+} catch(e) {}
+
+function save() {
+  try { localStorage.setItem('called-store', JSON.stringify(store)); } catch(e) {}
+}
+
+function dk(y,m,d) { return y+'_'+m+'_'+d; }
+function gd(y,m,d) {
+  var k = dk(y,m,d);
+  if (!store[k]) store[k] = {phoneam:false, qt:false, ses:null, clean:true, read:false, phonepm:false};
+  return store[k];
+}
+function td() { return gd(TODAY.getFullYear(), TODAY.getMonth(), TODAY.getDate()); }
+
+// ── TODAY ──
+function tog(p) { var d = td(); d[p] = !d[p]; save(); renderToday(); if(calVis) renderCal(); }
+function pickSes(v) { var d = td(); d.ses = (d.ses === v) ? null : v; save(); renderToday(); if(calVis) renderCal(); }
+
+function renderToday() {
+  var d = td();
+  var opts = {weekday:'short', month:'short', day:'numeric'};
+  document.getElementById('hdr-date').textContent = TODAY.toLocaleDateString('en-US', opts);
+
+  [['phoneam',d.phoneam],['qt',d.qt],['clean',d.clean],['read',d.read],['phonepm',d.phonepm]].forEach(function(t) {
+    var el = document.getElementById('tog-' + t[0]);
+    if (t[1]) el.classList.add('on'); else el.classList.remove('on');
+  });
+
+  ['gym','tennis','career','book','bible'].forEach(function(c) {
+    var el = document.getElementById('chip-' + c);
+    el.className = 'chip' + (d.ses === c ? ' ' + c + '-on' : '');
+  });
+
+  var mD = [d.phoneam, d.qt, d.ses !== null].filter(Boolean).length;
+  var eD = [d.read, d.phonepm].filter(Boolean).length;
+  var mP = Math.round(mD/3*100), eP = Math.round(eD/2*100);
+
+  document.getElementById('sf-m').style.width = mP + '%';
+  document.getElementById('sp-m').textContent = mP + '%';
+  document.getElementById('sf-f').style.width = d.clean ? '100%' : '0%';
+  document.getElementById('sp-f').textContent = d.clean ? '✓' : '✗';
+  document.getElementById('sf-e').style.width = eP + '%';
+  document.getElementById('sp-e').textContent = eP + '%';
+
+  var tot = [d.phoneam, d.qt, d.ses !== null, d.clean, d.read, d.phonepm].filter(Boolean).length;
+  var msgEl = document.getElementById('day-msg');
+  msgEl.className = 'day-msg';
+
+  var msgs = [
+    'Log your morning when you\'re done.',
+    'One habit done. Keep going.',
+    'Two down. Building momentum.',
+    'Halfway there. Evening block still ahead.',
+    'Four out of six. Strong day taking shape.',
+    'Five out of six. Almost a perfect day.',
+    'All six done. This is what faithfulness looks like.'
+  ];
+  var msg = msgs[Math.min(tot, 6)];
+  if (!d.clean && tot > 0) {
+    msg = 'You relapsed today — and still showed up for ' + tot + ' other habits. Tell your friend today. Tomorrow is a new day.';
+    msgEl.classList.add('warn');
+  } else if (tot === 6) {
+    msgEl.classList.add('great');
+  }
+  msgEl.textContent = msg;
+}
+
+// ── CALENDAR ──
+function renderCal() {
+  calVis = true;
+  document.getElementById('month-title').textContent = MONTHS[vM] + ' ' + vY;
+  document.getElementById('cal-hdr').innerHTML = DAYS.map(function(d) {
+    return '<div class="cal-dn">' + d + '</div>';
+  }).join('');
+
+  var fd = new Date(vY, vM, 1).getDay();
+  var dim = new Date(vY, vM+1, 0).getDate();
+  var html = '';
+  for (var i = 0; i < fd; i++) html += '<div class="cal-cell empty"></div>';
+
+  var qtC = 0, clC = 0, fuC = 0;
+  var sC = {gym:0, tennis:0, career:0, book:0, bible:0};
+
+  for (var day = 1; day <= dim; day++) {
+    var iT = (vY === TODAY.getFullYear() && vM === TODAY.getMonth() && day === TODAY.getDate());
+    var iF = new Date(vY, vM, day) > TODAY;
+    var d = gd(vY, vM, day);
+    var cls = 'cal-cell' + (iT ? ' today' : '') + (iF ? ' future' : '');
+    var pips = '';
+
+    if (!iF) {
+      if (d.qt) { pips += '<div class="pip" style="background:#2D5BE3"></div>'; qtC++; }
+      if (d.ses && SC[d.ses]) { pips += '<div class="pip" style="background:' + SC[d.ses] + '"></div>'; sC[d.ses]++; }
+      if (d.clean) clC++;
+      else pips += '<div class="pip" style="background:#E53E3E;border-radius:2px"></div>';
+      if (d.read || d.phonepm) pips += '<div class="pip" style="background:#D4943A"></div>';
+      if ([d.phoneam,d.qt,d.ses!==null,d.clean,d.read,d.phonepm].filter(Boolean).length === 6) fuC++;
+    }
+
+    var click = iF ? '' : ' onclick="openModal(' + vY + ',' + vM + ',' + day + ')"';
+    html += '<div class="' + cls + '"' + click + '><div class="dnum">' + day + '</div><div class="dpips">' + pips + '</div></div>';
+  }
+
+  document.getElementById('cal-grid').innerHTML = html;
+  document.getElementById('cal-qt').textContent = qtC;
+  document.getElementById('cal-clean').textContent = clC;
+  document.getElementById('cal-full').textContent = fuC;
+  document.getElementById('m-qt').textContent = qtC;
+  document.getElementById('m-clean').textContent = clC;
+  document.getElementById('m-full').textContent = fuC;
+
+  var bd = '';
+  var any = false;
+  Object.keys(sC).forEach(function(k) {
+    if (sC[k] > 0) {
+      any = true;
+      bd += '<div class="ses-pill"><div class="ses-dot" style="background:' + SC[k] + '"></div>' + SL[k] + ' <strong>' + sC[k] + '</strong></div>';
+    }
+  });
+  document.getElementById('ses-bd').innerHTML = any ? bd : '<div style="font-size:13px;color:var(--text3)">No sessions logged yet.</div>';
+}
+
+// ── MODAL ──
+function openModal(y, m, d) {
+  var iT = (y === TODAY.getFullYear() && m === TODAY.getMonth() && d === TODAY.getDate());
+  if (iT) { showPage('today'); return; }
+  modalDay = {y:y, m:m, d:d};
+  var data = gd(y, m, d);
+  var ds = new Date(y, m, d).toLocaleDateString('en-US', {weekday:'long', month:'long', day:'numeric'});
+  document.getElementById('modal-title').textContent = ds;
+
+  var cks = [
+    {p:'phoneam', l:'Phone-free wake up'},
+    {p:'qt',      l:'QT done'},
+    {p:'clean',   l:'Clean day'},
+    {p:'read',    l:'Read before sleep'},
+    {p:'phonepm', l:'Phone-free evening'}
+  ];
+  document.getElementById('modal-checks').innerHTML = cks.map(function(c) {
+    return '<div class="mcheck"><span>' + c.l + '</span><input type="checkbox" data-prop="' + c.p + '"' + (data[c.p] ? ' checked' : '') + '/></div>';
+  }).join('');
+
+  document.getElementById('modal-chips').innerHTML = Object.keys(SL).map(function(s) {
+    var a = data.ses === s;
+    var col = SC[s];
+    return '<div class="mchip' + (a ? ' on' : '') + '" data-ses="' + s + '" style="' + (a ? 'border-color:' + col + ';background:' + col + '22;color:' + col + ';' : '') + '" onclick="mPickSes(this,\'' + s + '\')">' + SL[s] + '</div>';
+  }).join('');
+
+  document.getElementById('modal').classList.add('open');
+}
+
+function mPickSes(el, v) {
+  document.querySelectorAll('#modal-chips .mchip').forEach(function(c) {
+    var s = c.dataset.ses, col = SC[s];
+    var active = (c === el && !c.classList.contains('on'));
+    c.classList.toggle('on', active);
+    c.style.borderColor = active ? col : '';
+    c.style.background  = active ? col + '22' : '';
+    c.style.color       = active ? col : '';
+  });
+}
+
+function saveModal() {
+  if (!modalDay) return;
+  var data = gd(modalDay.y, modalDay.m, modalDay.d);
+  document.querySelectorAll('#modal-checks input').forEach(function(cb) {
+    data[cb.dataset.prop] = cb.checked;
+  });
+  var a = document.querySelector('#modal-chips .mchip.on');
+  data.ses = a ? a.dataset.ses : null;
+  save();
+  closeModal();
+  renderCal();
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  modalDay = null;
+}
+
+function handleOverlay(e) {
+  if (e.target === document.getElementById('modal')) closeModal();
+}
+
+// ── NAVIGATION ──
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+  document.querySelectorAll('.tab-item').forEach(function(t) { t.classList.remove('active'); });
+  document.getElementById('page-' + name).classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
+  if (name === 'calendar' || name === 'monthly') renderCal();
+  // scroll content to top
+  document.querySelector('.content').scrollTop = 0;
+}
+
+// ── HELPERS ──
+function changeMonth(d) {
+  vM += d;
+  if (vM > 11) { vM = 0; vY++; }
+  if (vM < 0)  { vM = 11; vY--; }
+  renderCal();
+}
+
+function bar(iId, bId, max) {
+  var v = parseInt(document.getElementById(iId).value) || 0;
+  document.getElementById(bId).style.width = Math.round(Math.min(v/max*100, 100)) + '%';
+}
+
+function tci(id) {
+  var el = document.getElementById(id);
+  el.classList.toggle('done', el.querySelector('input').checked);
+  try {
+    var done = [];
+    ['ci1','ci2','ci3','ci4','ci5'].forEach(function(id) {
+      if (document.getElementById(id).classList.contains('done')) done.push(id);
+    });
+    localStorage.setItem('called-ci', JSON.stringify(done));
+  } catch(e) {}
+}
+
+function sendReport() {
+  var r = function(id) { return document.getElementById(id).value || '0'; };
+  var msg = 'Monthly report:\n'
+    + 'QT days: ' + r('r-qt') + '/31\n'
+    + 'Clean days: ' + r('r-clean') + '/31\n'
+    + 'Full habit days: ' + r('r-full') + '/31\n'
+    + 'Career sessions: ' + r('r-pbi') + '/12\n'
+    + 'Vocals: ' + r('r-vocals') + '\n'
+    + 'Meraya calls: ' + r('r-meraya') + '/4\n'
+    + 'Mentor: ' + document.getElementById('r-mentor').value + '\n'
+    + 'God showed me: ' + (document.getElementById('r-reflect').value || '(nothing written)') + '\n'
+    + 'Struggles: ' + (document.getElementById('r-struggle').value || '(nothing written)');
+  alert('Copy this and paste it into your Claude chat:\n\n' + msg);
+}
+
+// ── PWA INSTALL ──
+window.addEventListener('beforeinstallprompt', function(e) {
+  e.preventDefault();
+  deferredPrompt = e;
+  document.getElementById('install-banner').style.display = 'block';
+});
+
+function installApp() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(function() {
+      deferredPrompt = null;
+      document.getElementById('install-banner').style.display = 'none';
+    });
+  }
+}
+
+// ── SERVICE WORKER ──
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js').catch(function() {});
+}
+
+// ── INIT ──
+renderToday();
+</script>
 </body>
 </html>
